@@ -19,16 +19,16 @@ ActiveRecord::Base.establish_connection(
 )
 
 # Storing all user characteristics
-user_data = User.all.each do [row]
-  first_name = row[1]
-  last_name = row[2]
-  birthday = row[3]
-  email = row[4]
-  avatar = row[5]
-
-  User.create(first_name: first_name, last_name: last_name, birthday: birthday, email: email, avatar: avatar)
-
-end
+# user_data = User.all.each do [row]
+#   first_name = row[1]
+#   last_name = row[2]
+#   birthday = row[3]
+#   email = row[4]
+#   avatar = row[5]
+#
+#   User.create(first_name: first_name, last_name: last_name, birthday: birthday, email: email, avatar: avatar)
+#
+# end
 
 
 binding.pry
