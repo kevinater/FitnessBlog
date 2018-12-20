@@ -4,5 +4,17 @@ h1 {
 }
 
 .container {
-  width: 100%
+  width: 100%;
+}
+
+.form-control {
+  width: 33%;
+}
+
+#posting {
+  margin-left: 33%;
+}
+
+#blogpost {
+  margin-left: 33%;
 }
