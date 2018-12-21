@@ -50,3 +50,4 @@ end
 get '/user/feed' do
   erb :blogfeed
 end
+
