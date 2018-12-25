@@ -41,8 +41,8 @@ post '/newuser/signup' do
   if already_user
     redirect '/login'
   else
-    User.create(first_name: params["first_name"], last_name: params["last_name"], email: params["email"], birthday: params["birthday"], password: params["password"])
-    session[:user_id] = already_user.id
+    new_user = User.create(first_name: params["first_name"], last_name: params["last_name"], email: params["email"], birthday: params["birthday"], password: params["password"])
+    session[:user_id] = new_user.id
     redirect '/'
   end
 end
