@@ -1,5 +1,9 @@
 <h1> Hello World </h1>
 
+<div class="username">
+    <h3> <%= current_user&.first_name %> </h3>
+</div>
+
 <% @all_posts.each do |post| %>
     <div class="postWrapper">
      <h2> Title: <%= post.title %> </h2>

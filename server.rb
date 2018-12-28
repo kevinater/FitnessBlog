@@ -1,5 +1,6 @@
 require 'sinatra'
 require "sinatra/reloader"
+require 'bcrypt'
 
 # Run this script with `bundle exec ruby app.rb`
 require 'sqlite3'
@@ -40,6 +41,7 @@ post '/post' do
 end
 
 get '/signup' do
+
   erb :signup
 end
 
@@ -47,18 +49,54 @@ get '/login' do
   erb :login
 end
 
-post '/newuser/signup' do
-  already_user = User.find_by(email: params["email"])
-  if already_user
-    redirect '/login'
+post '/login' do
+  user = get_user_by_email
+  if !user || !check_password(params["password"], user.password)
+    redirect '/signup'
   else
-    new_user = User.create(first_name: params["first_name"], last_name: params["last_name"], email: params["email"], birthday: params["birthday"], password: params["password"])
-    session[:user_id] = new_user.id
+    session[:user_id] = user
     redirect '/'
   end
 end
 
-get '/user/feed' do
-  erb :blogfeed
+post '/logout' do
+  session[:user_id] = nil
+  redirect '/login'
 end
 
+post '/newuser/signup' do
+  if get_user_by_email
+    redirect '/login'
+  else
+    new_user = User.create(first_name: params["first_name"], last_name: params["last_name"], email: params["email"], birthday: params["birthday"], password: generate_password_hash(params["password"]))
+    session[:user_id] = new_user
+
+    redirect '/'
+  end
+end
+
+get '/user/feed/:id' do
+
+  @user = User.find(params["id"])
+  if !@user || !current_user
+    redirect '/login'
+  else
+   erb :blogfeed
+  end
+end
+
+
+helpers do
+  def generate_password_hash(password)
+    BCrypt::Password.create(password).to_s
+  end
+  def check_password(password, encrypted_password)
+    BCrypt::Password.new(encrypted_password) == password
+  end
+  def get_user_by_email
+    User.find_by(email: params["email"])
+  end
+  def current_user
+    session[:user_id]
+  end
+end
