@@ -25,6 +25,7 @@ register Sinatra::Reloader
 enable :sessions
 
 get '/' do
+  @all_posts = Post.all.order(id: :desc)
   erb :index
 end
 

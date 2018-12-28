@@ -1,7 +1,16 @@
 <h1> Hello World </h1>
 
+<% @all_posts.each do |post| %>
+    <div class="postWrapper">
+     <h2> Title: <%= post.title %> </h2>
+     <p> <%= post.text %> </p>
+     <% author = post.user %>
+     <a href=""> <%= author.first_name %> <img src="<%= author.avatar %>"></a>
+    </div>
+<% end %>
 <form role="form" method="POST" action="/post">
     <input type="text" name="title" placeholder="Post title">
     <input type="text" name="text" placeholder="Content">
     <input type="submit" value="Submit" class="btn btn-info btn-block">
 </form>
+
