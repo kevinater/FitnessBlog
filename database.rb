@@ -20,6 +20,6 @@ ActiveRecord::Base.establish_connection(
 
 #use this file to open pry
 #Storing data for gitpod
-first_user = User.create(first_name: "Kevin", last_name: "Vee", birthday: "January 5th 1996", email: "keviniscool@gmaaaaail.com")
+# first_user = User.create(first_name: "Kevin", last_name: "Vee", birthday: "January 5th 1996", email: "kevin@gmaaaaail.com")
 
 binding.pry

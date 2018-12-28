@@ -28,6 +28,16 @@ get '/' do
   erb :index
 end
 
+post '/post' do
+#Creating a new post
+    if session[:user_id]
+        new_post = Post.create(title: params["title"], text: params["text"], user_id: session[:user_id])
+        redirect '/'
+    else
+        redirect '/login'
+    end
+end
+
 get '/signup' do
   erb :signup
 end
