@@ -32,8 +32,8 @@ end
 
 post '/post' do
 #Creating a new post
-    if session[:user_id]
-        new_post = Post.create(title: params["title"], text: params["text"], user_id: session[:user_id])
+    if current_user
+        new_post = Post.create(title: params["title"], text: params["text"], user_id: current_user.id)
         redirect '/'
     else
         redirect '/login'
@@ -81,6 +81,9 @@ get '/user/feed/:id' do
   if !@user || !current_user
     redirect '/login'
   else
+    @posts = @user.posts.order(id: :asc).to_a.last(20).reverse
+    
+
    erb :blogfeed
   end
 end

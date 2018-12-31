@@ -4,8 +4,8 @@ require 'active_record'
 
 #require model classes
 # require './models/cake.rb'
-require '.models/user.rb'
-require '.models/post.rb'
+require './models/user.rb'
+require './models/post.rb'
 
 # Use `binding.pry` anywhere in this script for easy debugging
 require 'pry'
@@ -22,4 +22,8 @@ ActiveRecord::Base.establish_connection(
 
 first_user = User.create(first_name: "Kevin", last_name: "Vee", birthday: "January 5th 1996", email: "keviniscool@gmaaaaail.com")
 
-binding.pry
+for x in (0..30)
+    Post.create(title: "Post number:" + x.to_s, text: "text", user_id: 1)
+end
+
+
