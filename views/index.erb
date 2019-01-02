@@ -1,4 +1,4 @@
-<h1> Hello World </h1>
+
 
 <div class="username">
     <h3> <%= current_user&.first_name %> </h3>
@@ -9,7 +9,7 @@
      <h2> Title: <%= post.title %> </h2>
      <p> <%= post.text %> </p>
      <% author = post.user %>
-     <a href=""> <%= author.first_name %> <img src="<%= author.avatar %>"></a>
+     <a href="/user/feed/current_user.id"> <%= author.first_name %> <img src="<%= author.avatar %>"></a>
     </div>
 <% end %>
 <form role="form" method="POST" action="/post">

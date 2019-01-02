@@ -47,6 +47,11 @@ post '/post' do
     end
 end
 
+get '/post/delete/:id' do
+  Post.find(params["id"]).destroy
+  redirect '/'
+end
+
 get '/signup' do
 
   erb :signup
@@ -66,7 +71,7 @@ post '/login' do
   end
 end
 
-post '/logout' do
+get '/logout' do
   session[:user_id] = nil
   redirect '/login'
 end
