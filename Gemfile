@@ -9,3 +9,11 @@ gem 'rack'
 gem 'logger'
 gem 'pry'
 gem 'bcrypt'
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
