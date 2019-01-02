@@ -14,7 +14,7 @@
     <div class="ui secondary menu">
       <% if current_user %>
       <a class="active item" href="/">Home</a>
-      <a class="item" href="/user/feed/current_user.id">Profile Page</a>
+      <a class="item" href="/user/feed/<%=current_user.id%>">Profile Page</a>
       <a class="item" href="/logout">Logout</a>
       <% else %>
       <a class="item" href="/login">Login</a>
